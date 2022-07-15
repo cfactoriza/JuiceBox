@@ -65,6 +65,7 @@ async function rebuildDB() {
     await dropTables();
     await createTables();
     await createInitialUsers();
+    await createInitialPosts();
   } catch (error) {
     throw error;
   }
@@ -104,7 +105,7 @@ async function createTables() {
             );
         CREATE TABLE posts (
             id SERIAL PRIMARY KEY,
-            "authorId" INTEGER REFERENCES users(id) NOT NULL,
+            "authorId" INTEGER REFERENCES users(id),
             title VARCHAR(255) NOT NULL,
             content TEXT NOT NULL,
             active BOOLEAN DEFAULT true
