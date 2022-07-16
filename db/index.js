@@ -137,16 +137,18 @@ async function createTags (tagList) {
         (_, index) => `$${index + 1}`).join('), (');
      const selectValues = tagList.map(
         (_, index) => `$${index + 1}`).join(', ');
-
         try {
-            const {rows: [tagList]} =
-            `INSERT INTO tags(name)
-            VALUES ($1), ($2), ($3)
-            ON CONFLICT (name) DO NOTHING;
+            await client.query( `INSERT INTO tags(name)
+            VALUES (${ insertValues })
+            ON CONFLICT (name) DO NOTHING;`,tagList)
+           
+            const {rows} = await client.query(`
              SELECT *  FROM tags
              WHERE name
-             IN VALUES ($1), ($2), ($3););`
-             return tagList
+             IN  (${ selectValues });`,tagList);
+
+             return rows
+
           } catch (error) {
             throw error;
           }
@@ -222,5 +224,6 @@ module.exports = {
   getUserById,
   createTags,
   createPostTag,
-  getPostById
+  getPostById,
+  addTagsToPost
 };

@@ -1,4 +1,4 @@
-const { client, getAllUsers, createUser, updateUser, createPost, updatePost, getAllPosts, getPostsByUser, getUserById,createTags,createPostTag,getPostById } = require("./index");
+const { client, getAllUsers, createUser, updateUser, createPost, updatePost, getAllPosts, getPostsByUser, getUserById,createTags,createPostTag,getPostById,addTagsToPost } = require("./index");
 
 // new function, should attempt to create a few users
 async function createInitialUsers() {
@@ -145,8 +145,8 @@ async function createTables() {
             name VARCHAR(255) UNIQUE NOT NULL
         );
         CREATE TABLE post_tags (
-             "postId" INTEGER REFERENCES posts(id) UNIQUE,
-             "tagId" INTEGER REFERENCES tags(id) UNIQUE
+             "postId" INTEGER REFERENCES posts(id) UNIQUE ,
+             "tagId" INTEGER REFERENCES tags(id) UNIQUE 
          );
             `);
 
