@@ -1,4 +1,4 @@
-const { client, getAllUsers, createUser, updateUser, createPost, updatePost, getAllPosts, getPostsByUser, getUserById,createTags,createPostTag,getPostById,addTagsToPost,getPostsByTagName } = require("./index");
+const { client, getAllUsers, createUser, updateUser, createPost, updatePost, getAllPosts, getPostsByUser, getUserById,createTags,createPostTag,getPostById,addTagsToPost,getPostsByTagName, getAllTags } = require("./index");
 
 // new function, should attempt to create a few users
 async function createInitialUsers() {
