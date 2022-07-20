@@ -26,7 +26,6 @@ tagsRouter.get('/', async (req, res) => {
   
       res.send(filteredPosts )
     } catch ({ name, message }) {
-      // forward the name and message to the error handler
       next({ name, message });
     }
   });
